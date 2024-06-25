@@ -188,7 +188,8 @@ Video에 대한 Inference 결과
 
 
 
-Uploading 5927708-hd_1080_1920_30fps_out.mp4…
+![제목 없는 동영상 - Clipchamp로 제작 (2) (1)](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/4cee1cdc-edb6-4a3c-9306-a58b2d700e95)
+
 
 
 
