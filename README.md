@@ -272,7 +272,7 @@ DeepSORT 모델을 적용하여 다중 객체 추적 성능을 개선하였으�
 서로 다른 방향의 차선을 나눠서 혼잡도를 측정할 예정이다.
 
 
-## 6. 참고문헌
+## 7. 참고문헌
 1. Ren, S., He, K., Girshick, R., & Sun, J. (2015). Faster r-cnn: Towards real-time object detection with region proposal networks. Advances in neural information processing systems, 28.
 2. Du, Y., Zhao, Z., Song, Y., Zhao, Y., Su, F., Gong, T., & Meng, H. (2023). Strongsort: Make deepsort great again. IEEE Transactions on Multimedia.
 3. Zhang, Y. (2018, March). A better autoencoder for image: Convolutional autoencoder. In ICONIP17-DCEC. Available online: [link](http://users.cecs.anu.edu.au/Tom.Gedeon/conf/ABCs2018/paper/ABCs2018_paper_58.pdf) (accessed on 23 March 2017).
