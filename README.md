@@ -157,7 +157,7 @@ Validation Datasets에 대한 최종 mAP: 0.7474
 ### → 최종 top-1 accuracy: 100.0000
 
 
-Top-1 Accuracy란 Softmax Activation Function에서의 Output에서 제일 높은 수치를 가지는 값이 정답일 경우에 대한 지표를 계산한 것을 의미한다. 즉 Top-1 Accuracy가 99.2000와 같이 높은 수치가 나왔다는 것은 해당 ReID 모델이 대부분의 경우에 대해 가장 높은 확률을 가진 클래스를 정확하게 식별한다는 의미이며 이는 모델이 주어진 분류 작업을 잘 수행하고 있음을 나타낸다.
+Top-1 Accuracy란 Softmax Activation Function에서의 Output에서 제일 높은 수치를 가지는 값이 정답일 경우에 대한 지표를 계산한 것을 의미한다. 즉 Top-1 Accuracy가 100.0000과 같이 높은 수치가 나왔다는 것은 해당 ReID 모델이 대부분의 경우에 대해 가장 높은 확률을 가진 클래스를 정확하게 식별한다는 의미이며 이는 모델이 주어진 분류 작업을 잘 수행하고 있음을 나타낸다.
 
 #### 3.2.3 DeepSORT (For Multi Object Tracking)
 
