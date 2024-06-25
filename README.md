@@ -1,5 +1,3 @@
-
-https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/007093a0-3117-49fc-ab17-39fad928804b
 # AutoEncoder, Two Stage Detector, DeepSORT, ReID, UNet 기반 지능형 교통체계 구축 프로젝트
 
 ## 요약
@@ -205,7 +203,8 @@ Video에 대한 Inference 결과
 
 
 
-https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/0cb4c434-bf64-4d68-84d1-b381e813eb64
+![제목 없는 동영상 - Clipchamp로 제작 (1) (1)](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/47e4aa6b-05e2-4641-96a0-d2e875ad3b7e)
+
 
 
 
