@@ -260,6 +260,18 @@ DeepSORT 모델을 적용하여 다중 객체 추적 성능을 개선하였으�
 
 본 프로젝트는 지능형 교통 시스템의 발전에 중요한 초석이 될 것이며, 향후 연구를 통해 더욱 고도화된 교통 관리 솔루션을 개발할 수 있을 것이다.
 
+
+## 6. 향후 계획
+### 6.1 
+도로 CCTV의 위치나 각도같은 다양한 Extrinsic Parameter를 극복하기 위해 차량객체의 수를 이용하여 교통 혼잡 지수를 계산하는 것이 아닌, 차량 객체에 대해서까지 Semantic Segmentation 기법을 적용한 후 도로의 혼잡도를 측정하는 방법으로 변경할 예정이다.
+
+### 6.2 
+본 프로젝트의 지능형 교통 시스템은 100대의 차량이 지속적으로 잘 지나가는 것과 100대의 차량이 그저 움직이지 않고 정체한 것을 동일하게 혼잡하다고 인식할 것임 그래서 차량 객체의 고유한 Id를 기반으로 차량들이 도로 상에서 정체된 시간을 측정하는 방식을 적용할 예정
+
+### 6.3 
+서로 다른 방향의 차선을 나눠서 혼잡도를 측정할 예정
+
+
 ## 6. 참고문헌
 1. Ren, S., He, K., Girshick, R., & Sun, J. (2015). Faster r-cnn: Towards real-time object detection with region proposal networks. Advances in neural information processing systems, 28.
 2. Du, Y., Zhao, Z., Song, Y., Zhao, Y., Su, F., Gong, T., & Meng, H. (2023). Strongsort: Make deepsort great again. IEEE Transactions on Multimedia.
