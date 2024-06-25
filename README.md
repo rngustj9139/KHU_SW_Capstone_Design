@@ -138,6 +138,8 @@ Issue가 발생하였다.
 ![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/325074fe-2990-4be7-81c5-1e30f287e862)
 
 Training Datasets에 대한 최종 mAP: 0.7470
+
+
 Validation Datasets에 대한 최종 mAP: 0.7474
 
 
