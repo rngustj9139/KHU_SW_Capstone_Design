@@ -119,6 +119,7 @@ Issue가 발생하였다.
 
 - Training Model
  모델은 에포크 13회부터 Stable한 Performance를 나타내기 시작하였음
+  <br />
 ![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/a83df687-3189-4d4e-bff0-36ca3dca3209)
 ![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/c665cbf7-28f0-4c5f-b2d9-cba99c5a70a6)
 ![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/28c74272-7649-411c-9961-60bd9cb5ecce)
@@ -133,23 +134,43 @@ Validation Datasets에 대한 최종 mAP: 0.7474
 
 
 #### 3.2.2 ReID(For Multi Object Tracking)
-- Warm-Up 기법 적용: 초기 학습 단계에서 학습률을 작게 시작하고, 이후 점진적, 역동적으로 변화시켜 최적의 학습률로 수렴하게 하는 과정.
-- 최종 triplet_loss: 0.0000
-- 최종 top-1 accuracy: 100.0000
+이전 FasterRCNN과는 달리 학습 초반에도 Stable한 Performance를 도출하기 위해 Warm-Up 기법을 적용하였다. 딥러닝 모델을 훈련할 때 학습률(learning rate)을 조절하기 위한 주요 기법 중 하나인 워밍업(warm-up)이란 초기 학습 단계에서 학습률을 작게 시작하고, 이후 점진적, 역동적으로 변화시켜 최적의 학습률로 수렴하게 하는 과정이다. 이는 초기에는 학습이 불안정할 수 있으므로 학습률을 작게 설정하여 안정적으로 시작하고, 학습이 진행됨에 따라 학습률을 증가시켜 더 나은 결과를 얻을 수 있도록 도와준다.
+
+### → 최종 triplet_loss: 0.0000
+
+  Triplet Loss는 어떤 한 객체(Anchor)와 같은 객체(Positive), 다른 객체(Negative)이라는 파라미터를 이용해 학습 시 미니 배치 안에서 Anchor, Positive, Negative들이 임베딩 된 값들의 유클리드 거리를 구해 아래와 같은 Loss 함수를 만든다.
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/06853291-f6d8-4463-8a17-19ad3b5d61b2)
+
+  대괄호 안의 첫번째 항이 의미하는 것은 Anchor와 Positive간의 Distance고, 두번째 항은 Anchor와 Negative와의 Distance이며 α는 마진(Hyper Parameter)을 의미한다. 따라서 L을 최소화한다는 것은 Positive와의 거리는 가까워지도록 하고 Negative와의 거리는 멀어지도록 하는 것이다. 즉 Triplet Loss가 0.000이 나왔다는 것은 ReID 모델이 학습 중에 모든 Anchor, Positive, Negative 쌍에 대해 거리를 올바르게 구별했다는 의미이며 Anchor와 Positive 간의 거리가 Negative 간의 거리보다 작거나 같게 학습되었다는 것을 나타낸다. 즉 이는 모델이 이미 학습 데이터에서 제시된 유사성 및 차이를 이해하고 있음을 시사할 수 있다.
+
+### → 최종 top-1 accuracy: 100.0000
+
+
+Top-1 Accuracy란 Softmax Activation Function에서의 Output에서 제일 높은 수치를 가지는 값이 정답일 경우에 대한 지표를 계산한 것을 의미한다. 즉 Top-1 Accuracy가 99.2000와 같이 높은 수치가 나왔다는 것은 해당 ReID 모델이 대부분의 경우에 대해 가장 높은 확률을 가진 클래스를 정확하게 식별한다는 의미이며 이는 모델이 주어진 분류 작업을 잘 수행하고 있음을 나타낸다.
 
 #### 3.2.3 DeepSORT (For Multi Object Tracking)
-- DeepSORT 성능 평가 (ReID 모델을 적용 했을 때): MOTA(100%), MOTP(0.090)
-- DeepSORT 성능 평가 (ReID 모델을 적용 하지 않았을 때): MOTA(99.3%), MOTP(0.091)
+
+MMTracking에서 제공하는 DeepSORT의 경우 Object Detection Model 과 ReID Model을 혼합하여 MOT을 수행할 수 있었다. Detection Model의 경우 구축한 Faster-RCNN Checkpoint 파일에 Tracking Video에 대한 전이 학습을 수행한 뒤 적용하였다. ReID(Re-Identification) Model의 경우 사용되는 데이터셋의 객체 간의 구별되는 특징이 없는 경우, 객체의 식별이 어려워지고 성능이 제한될 수 있다. 즉 객체 간의 차이가 충분히 크지 않거나 유의미한 특징이 부족하면 다중 객체에 대한 정확한 식별과 추적이 어려워지고 Generalization Performance의 저하를 초래할 수 있다. 따라서 ReID Model을 효과적으로 학습시키기 위해서는 데이터셋이 객체 간의 유의미하고 구별되는 특징을 포함하고 있어야하는데  학습 데이터는 사람과 같이 구별되는 특징을 가진 객체가 포함되지 않았기 때문에 ReID Model을 DeepSORT에 적용하였을 때 눈에 띄는 성능의 향상을 불러올 수 있을지 의문을 가지게 되었다. 그래서 ReID Model을 DeepSORT에 적용했을 때와 적용하지 않았을 때의 성능 비교 연구를 수행하였고 아래와 같은 결과를 도출할 수 있었다. 
+
+
+### → DeepSORT 성능 평가 (ReID 모델을 적용 했을 때): MOTA(100%), MOTP(0.090)
+
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/b5838975-8351-4574-92e3-0cbec8c447eb)
+
+
+### → DeepSORT 성능 평가 (ReID 모델을 적용 하지 않았을 때): MOTA(99.3%), MOTP(0.091)
+
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/1a456ede-ed8b-47f8-8e1c-53ebd45f230a)
+
+ReID 모델을 적용한 DeepSORT를 기반 MOT 수행시 MOTA(Multi Object Tracking Accuracy)성능이 0.7% 향상하며, MOTP(Multi Object Tracking Precision) 성능은 0.001% 향상한 것을 확인할 수 있었다 (벤치마크마다 MOTP를 표현하는 방식이 다름) 또한 Recall과 Precision값이 각각 0.0%, 0.7% 증가하였다.
 
 #### 3.2.4 AutoEncoder (For Anomaly Detection)
-- Training Datasets
-    - Training Data 수량: 5,500
-    - Validation Data 수량: 500
-    - Epoch: 30
-    - Batch Size: 100
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/98d9497e-b0c6-4b3c-a7f3-f1997ffc3a75)
+
 
 #### 3.2.5 UNet (For Semantic Segmentation)
-- Training Model
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/ecf74014-6727-4a5a-ac67-0acd74ac8030)
+
 
 ### 3.3 이슈 및 대응
 도로의 혼잡도를 측정하기 위해 일정 시간 동안 도로를 통과하는 차량의 수를 도로 용량으로 나누는 방식을 채택하였다. 이를 위해 프로젝트 초기 Hough 변환 기법을 이용하여 도로 위의 대표적인 두 차선을 추출하고 그 사이의 영역을 구하는 코드를 구현했으나, 직선 형태의 차선은 잘 검출되었지만 곡선 형태의 차선은 제대로 검출되지 않는 문제가 발생하였다. 또한, 도로로 추정되는 관심영역(ROI)을 하드코딩으로 설정해야 하는 어려움도 존재하였는데, 이러한 문제를 극복하고자, Hough 변환 대신 Semantic Segmentation 모델을 도입하여 도로 영역을 추출하고, 이를 통해 보다 정확한 도로 용량을 측정하는 방식을 시도하였다.
@@ -157,33 +178,43 @@ Validation Datasets에 대한 최종 mAP: 0.7474
 ## 4. 결과 (Inference)
 
 ### 4.1 FasterRCNN
+Inference 결과, 안개가 낀 기상 환경 속에서도 높은 Confidence로 차량 객체들을 잘 Detection하는 모습을 보임
 단일 이미지에 대한 Inference 결과
 
-![FasterRCNN Single Image](path_to_single_image_inference_result)
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/de1466a9-e2cc-4ed2-ae8b-c9d3d8275132)
+
 
 Video에 대한 Inference 결과
 
-![FasterRCNN Video](path_to_video_inference_result)
+
+https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/66c3a9eb-4929-495c-b943-a0c225495139
+
+
 
 ### 4.2 DeepSORT
 Video에 대한 Inference 결과
 
-![DeepSORT Video](path_to_video_inference_result)
+
+https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/035a0de0-ec9e-408d-ba36-51ac09c32db0
+
+
 
 ### 4.3 AutoEncoder
 AutoEncoder Inference 결과
 
-![AutoEncoder](path_to_autoencoder_inference_result)
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/fef28d2f-c69a-44c6-8183-b91ed527c8e3)
+
 
 ### 4.4 UNet
 UNet Inference 결과
 
-![UNet](path_to_unet_inference_result)
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/59803e35-42d7-48f6-a7ab-327ef66d94e6)
 
 ### 4.5 Final Product Inference
 Final Product Inference 결과
 
-![Final Product](path_to_final_product_inference_result)
+![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/fb23f503-9733-44e1-86ba-280286353319)
+
 
 ## 5. 결론
 본 연구에서는 딥러닝 기술과 대용량 도로 CCTV 데이터를 이용한 지능형 교통 시스템을 구축하여 교통 혼잡도를 실시간으로 분석하고 이상 운전을 탐지하는 모델을 제안하였다. FasterRCNN, UNet, DeepSORT, AutoEncoder 등의 다양한 딥러닝 모델을 결합하여 교통 상황을 정밀하게 파악하고, 사고 및 이상 운전 상황에 신속히 대응할 수 있는 시스템을 구현하였다. 이를 통해 다음과 같은 결론을 도출할 수 있다:
