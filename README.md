@@ -29,7 +29,7 @@ Performance를 증가시킬 수 있었다.
 
 ![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/3e1181ce-460d-4d32-b5ff-5f4dff42b322)
 
-#### 1.1.3 도로 CCTV 데이터를 활용한 이상운전(e.g. 음주운전, 졸음운전, 급발진) 탐지 모델의 저조한 등장과 발전
+#### 1.1.3 도로 CCTV 데이터를 활용한 이상운전(e.g. 음주운전, 졸음운전, 급발진) 및 교통 사고 탐지 모델의 저조한 등장과 발전
 음주운전이나 졸음운전, 급발진 등의 이상운전을 감지하기 위한 모델에 관한 논문은 아래의 예시와 같이 비전기술 및 센서 데이터를 기반으로 하여 다양한 연구 분야에서 다루어지고 있다.
 
 - "Real-time Detection of Driver Fatigue Using Computer Vision - A Review" (IEEE, 2019) 비전 기반의 기술을 사용하여 운전자의 피로를 실시간으로 감지하는 방법에 대한 논문
