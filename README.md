@@ -192,6 +192,7 @@ ReID 모델을 적용한 DeepSORT를 기반 MOT 수행시 MOTA(Multi Object Trac
 
 ### 4.1 FasterRCNN
 Inference 결과, 안개가 낀 기상 환경 속에서도 높은 Confidence로 차량 객체들을 잘 Detection하는 모습을 보임
+
 단일 이미지에 대한 Inference 결과
 
 ![image](https://github.com/rngustj9139/KHU_SW_Capstone_Design/assets/43543906/de1466a9-e2cc-4ed2-ae8b-c9d3d8275132)
