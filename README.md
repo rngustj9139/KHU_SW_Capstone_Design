@@ -1,4 +1,4 @@
-# AutoEncoder, Two Stage Detector, DeepSORT, ReID, UNet 기반 지능형 교통체계 구축 프로젝트
+# SmartTraffic: AI 기반 도로 모니터링 및 이상 탐지 시스템
 
 ## 요약
 
