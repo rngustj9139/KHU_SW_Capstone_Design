@@ -1,4 +1,4 @@
-# AutoEncoder, Two Stage Detector, DeepSORT, ReID, UNet 기반 지능형 교통체계 구축 프로젝트(다양한 기상환경에서의 도로 혼잡도 모니터링 & 분석 by Object Detection, Object Tracking, Semantic Segmentation, 사고 & 이상 운전 탐지 by Anomaly Detection)
+# SmartTraffic: AI 기반 도로 혼잡도 모니터링 및 이상 탐지 시스템 (AutoEncoder, Two Stage Detector, DeepSORT, ReID, UNet)
 
 ## 요약
 
