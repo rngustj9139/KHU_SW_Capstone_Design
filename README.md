@@ -1,4 +1,4 @@
-# SmartTraffic: AI 기반 도로 혼잡도 모니터링 및 이상 탐지 시스템 (AutoEncoder, Two Stage Detector, DeepSORT, ReID, UNet)
+# SmartTraffic: CV 기반 도로 혼잡도 모니터링 및 이상 탐지 시스템 (AutoEncoder, Two Stage Detector, DeepSORT, ReID, UNet)
 
 ## 요약
 
